@@ -5,9 +5,13 @@
 [![npm version](https://badge.fury.io/js/code-review-unity.svg)](https://www.npmjs.com/package/code-review-unity)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Why Follow Unity's Style Guide?
+## Features
 
-Following Unity's official C# style guide improves **performance** (avoids GC allocation, Update bloat), **team collaboration** (consistent patterns, readable code), and **maintainability** (small classes, less duplication). It also prevents Unity-specific pitfalls like lifecycle misuse, improper coroutine patterns, and API anti-patterns.
+- **Multiple review modes** — Review a single file, your local `git diff`, or a GitHub PR by URL.
+- **Follow Unity 6 C# style guide** — Naming (PascalCase/camelCase, booleans as questions), SRP, DRY, KISS, comments (why not what), YAGNI, extension methods, and UI Toolkit BEM naming.
+- **Unity-specific checks** — MonoBehaviour lifecycle (Awake/Start/OnEnable/OnDestroy), coroutine patterns, ScriptableObject usage, and API misuse (e.g. `GetComponent` in Update, `CompareTag`, non-alloc physics, pooling).
+- **Performance and GC** — Flags allocation in hot paths (strings, LINQ, boxing), Update bloat, and common anti-patterns (`SendMessage`, `Invoke`, `FindObjectOfType` in hot paths).
+- **Structured output** — Critical issues, style violations, and suggestions with file:line refs and concrete fix examples.
 
 ---
 
@@ -35,26 +39,13 @@ Or review git changes:
 /code-review-unity
 ```
 
-### Conversational Trigger
-
-Just ask in natural language:
+or Just ask claude code:
 
 ```
-"Can you review this Unity script for style guide issues?"
-"Check my code against Unity's best practices"
-"Is this MonoBehaviour following SRP?"
+"Review this Unity script"
 ```
 
 Claude will automatically invoke this skill and review your code.
-
----
-
-## Workflow
-
-1. **Input** - Provide a file, git diff, or PR URL
-2. **Parse** - Read the code and identify changes
-3. **Review** - Check against Unity's C# Style Guide (Unity 6 Edition)
-4. **Report** - Output issues organized by severity (Critical, Style, Suggestions)
 
 ---
 
@@ -85,7 +76,6 @@ Claude will automatically invoke this skill and review your code.
 
 ## Resources
 
-### Official Unity Guides
 - [C# Style Guide (Unity 6)](https://unity.com/resources/c-sharp-style-guide-unity-6/) - Official style guide for clean, scalable code
 - [Unity How-To Library](https://unity.com/how-to) - Tutorials on scripting, optimization, and best practices
 
