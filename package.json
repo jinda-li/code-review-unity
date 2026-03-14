@@ -1,0 +1,46 @@
+{
+  "name": "code-review-unity",
+  "version": "1.0.1",
+  "description": "Claude Code skill for reviewing Unity C# code based on Unity's official style guide",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "code-review-unity": "index.js"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "prepublishOnly": "node --check index.js"
+  },
+  "keywords": [
+    "claude-code",
+    "skill",
+    "unity",
+    "code-review",
+    "csharp",
+    "game-development",
+    "unity3d",
+    "unity6"
+  ],
+  "author": "Jinda Li",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jinda-li/code-review-unity.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jinda-li/code-review-unity/issues"
+  },
+  "homepage": "https://github.com/jinda-li/code-review-unity#readme",
+  "files": [
+    ".claude/skills/",
+    "index.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
