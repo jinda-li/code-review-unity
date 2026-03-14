@@ -1,6 +1,6 @@
 {
   "name": "code-review-unity",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Claude Code skill for reviewing Unity C# code based on Unity's official style guide",
   "main": "index.js",
   "type": "module",
