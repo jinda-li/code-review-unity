@@ -4,6 +4,9 @@ node_modules/
 # Build output
 dist/
 
+# Lock files (optional for libraries)
+package-lock.json
+
 # OS files
 .DS_Store
 Thumbs.db

@@ -170,53 +170,98 @@ block-name__element-name--modifier-name
 
 ### MonoBehaviour Lifecycle
 
-- Correct usage of `Awake` vs `Start` vs `OnEnable`
-- Cleanup in `OnDestroy` (event unsubscription, nullifying references)
-- `[RuntimeInitializeOnLoadMethod]` usage scenarios
+- **Awake** - Initialize variables, cache component references, set up data
+- **Start** - Final initialization that depends on other objects being ready
+- **OnEnable** - Subscribe to events, enable behaviours
+- **OnDisable** - Unsubscribe from events
+- **OnDestroy** - Clean up references, stop coroutines, release resources
+- **Common mistakes to detect:**
+  - Using `Start` when `Awake` is appropriate (causes ordering issues)
+  - Not cleaning up in `OnDestroy` (memory leaks, null ref errors)
+  - Missing `[RuntimeInitializeOnLoadMethod]` for auto-init patterns
 
 ### Coroutine Patterns
 
-- Store Coroutine references for cancellation
+- Store Coroutine references for cancellation: `Coroutine _coroutine = StartCoroutine(MyRoutine())`
 - Avoid `StopAllCoroutines()` - use specific `StopCoroutine()`
-- Consider UniTask for complex chains
+- Consider UniTask for complex async chains
+- Common mistakes:
+  - Not stopping coroutines when disabled
+  - Starting the same coroutine multiple times
+  - Using `WaitForSeconds` when `Time.timeScale` matters
 
 ### ScriptableObject Architecture
 
-- Use ScriptableObject for data containers
-- Proper use of `[CreateAssetMenu]`
-- SO events for decoupled communication
+- Use ScriptableObject for data containers (config, stats, items)
+- Proper use of `[CreateAssetMenu]` for designer-friendly workflows
+- SO events for decoupled communication between systems
+- Avoid MonoBehaviour logic in ScriptableObjects
 
 ### Unity API Misuse Detection
 
 | Issue | Correct Approach |
 |-------|------------------|
-| GetComponent every frame | `[SerializeField]` or lazy caching |
-| String Tag comparison | `LayerMask.NameToLayer()` |
-| Allocating physics queries | Use `NonAlloc` variants |
-| Frequent Instantiate/Destroy | Use object pooling |
+| `GetComponent` every frame | `[SerializeField]` or cache in `Awake()` |
+| String Tag comparison (`CompareTag("Enemy")`) | Use `CompareTag()` method, not `tag == "Enemy"` |
+| Allocating physics queries | Use `OverlapSphereNonAlloc`, `RaycastNonAlloc` |
+| Frequent `Instantiate`/`Destroy` | Use object pooling |
+| `transform.Find` in Update | Cache reference, use direct assignment |
+| `GameObject.Find` | Use `[SerializeField]` or dependency injection |
+| Messy `Update` with many tasks | Split into focused methods or use events |
 
 ### Performance Concerns
 
-**GC Allocation (avoid in Update):**
-- String concatenation
-- LINQ queries
-- Methods returning new objects
+**GC Allocation (avoid in Update/FixedUpdate/LateUpdate):**
+- String concatenation - use `StringBuilder` or avoid entirely
+- LINQ queries - use for/foreach loops
+- Boxing value types - avoid `object`, use generics
+- Methods returning new objects (e.g., `ToArray()`, `ToList()`)
+- Creating new `Vector3`, `Quaternion` repeatedly - cache common values
 
 **Update Method Bloat:**
-- Keep Update methods minimal
-- Consider event-driven patterns
-- Use coroutines for time-based logic
+- Keep Update methods minimal (aim for < 10 lines)
+- Consider event-driven patterns instead of polling
+- Use coroutines for time-based or sequential logic
+- Consider `FixedUpdate` for physics, `LateUpdate` for follow cameras
 
 **Draw Calls:**
-- Batch static geometry
-- Use GPU instancing
+- Batch static geometry (static batching)
+- Use GPU instancing for repeated meshes
+- Combine meshes where appropriate
+- Use atlases for sprites and UI
+
+**Physics Optimization:**
+- Use primitive colliders over mesh colliders
+- Proper layer mask usage to reduce collision checks
+- Disable colliders when not needed
+- Use trigger events appropriately
+
+### UI Toolkit Best Practices
+
+- BEM naming for USS classes: `block__element--modifier`
+- Use `AddToClassList()` in code-behind
+- Separate data binding from visual elements
+- Avoid query selectors in Update loops - cache references
 
 ### Testing (Unity Test Framework)
 
-- Tests in separate Assembly
-- `[UnityTest]` for coroutine tests
+- Tests in separate Assembly Definition
+- `[UnityTest]` for coroutine tests (uses `IEnumerator`)
 - `[Test]` for pure C# tests
-- Mock external dependencies
+- Use `Assert.AreApproximatelyEqual` for floats
+- Mock external dependencies with interfaces
+- Test edge cases: zero values, null, empty collections
+
+### Common Unity Anti-Patterns to Detect
+
+| Anti-Pattern | Problem | Fix |
+|--------------|---------|-----|
+| Public fields for data | Breaks encapsulation | Use `[SerializeField]` with private fields |
+| `Update` polling | Wastes CPU cycles | Use events, coroutines, or triggers |
+| `SendMessage` / `BroadcastMessage` | Slow, no compile-time checking | Use C# events or direct references |
+| `Invoke` / `InvokeRepeating` | String-based, no refactoring support | Use coroutines or `Timer` patterns |
+| `FindObjectOfType` in hot paths | Very slow O(n) search | Cache reference or use events |
+| `PlayerPrefs` for game state | No validation, easy to tamper | Use proper save system with serialization |
 
 ---
 
