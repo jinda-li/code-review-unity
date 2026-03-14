@@ -7,27 +7,7 @@
 
 ## Why Follow Unity's Style Guide?
 
-Following Unity's official C# style guide brings significant benefits for Unity development:
-
-### 🚀 Performance & Stability
-- **Clean code runs better** - Well-organized code is easier to profile and optimize
-- **Avoid common pitfalls** - The guide helps you sidestep Unity-specific traps like GC allocation in Update, improper coroutine patterns, and MonoBehaviour lifecycle misuse
-- **Catching bugs early** - Consistent naming and structure make null reference errors and API misuse more visible
-
-### 🤝 Team Collaboration
-- **Readable by anyone** - Team members can jump into any script and understand it quickly
-- **Faster code reviews** - Common conventions mean reviewers focus on logic, not formatting
-- **Easier onboarding** - New developers get up to speed faster with consistent patterns
-
-### 🔧 Maintainability
-- **Small, focused classes** - Following SRP for MonoBehaviours makes changes safer and faster
-- **Less duplication** - DRY principles reduce the surface area for bugs
-- **Self-documenting code** - Good naming reduces the need for excessive comments
-
-### 🎮 Unity-Specific Advantages
-- **Correct lifecycle usage** - Knowing when to use `Awake` vs `Start` vs `OnEnable` prevents subtle initialization bugs
-- **Proper component patterns** - `[SerializeField]` over public fields, caching `GetComponent`, using ScriptableObjects for data
-- **Performance-aware coding** - Avoiding common Unity performance killers like string concat in Update, unbatched draw calls, allocating physics queries
+Following Unity's official C# style guide improves **performance** (avoids GC allocation, Update bloat), **team collaboration** (consistent patterns, readable code), and **maintainability** (small classes, less duplication). It also prevents Unity-specific pitfalls like lifecycle misuse, improper coroutine patterns, and API anti-patterns.
 
 ---
 
