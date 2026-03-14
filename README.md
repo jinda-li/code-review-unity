@@ -23,6 +23,8 @@ Or manually copy `.claude/skills/code-review-unity/` to `~/.claude/skills/`
 
 ## Usage
 
+### Command Invocation
+
 ```
 /code-review-unity Assets/Scripts/PlayerController.cs
 ```
@@ -32,6 +34,18 @@ Or review git changes:
 ```
 /code-review-unity
 ```
+
+### Conversational Trigger
+
+Just ask in natural language:
+
+```
+"Can you review this Unity script for style guide issues?"
+"Check my code against Unity's best practices"
+"Is this MonoBehaviour following SRP?"
+```
+
+Claude will automatically invoke this skill and review your code.
 
 ---
 

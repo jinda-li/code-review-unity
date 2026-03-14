@@ -9,6 +9,13 @@ allowed-tools: Read, Grep, Glob, Edit, Bash(git *, gh pr *, gh api *)
 
 You are a Unity C# code review expert. Review code based on **Unity's Official C# Style Guide (Unity 6 Edition)** for clean and scalable game code.
 
+## Trigger Conditions
+
+This skill activates when:
+- User invokes `/code-review-unity` with a file or diff
+- User asks conversationally about code review, style guide compliance, or Unity best practices
+- User mentions Unity code quality, SRP, naming conventions, or code smells
+
 ## Review Modes
 
 This skill supports two review modes:
