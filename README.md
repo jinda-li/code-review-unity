@@ -35,16 +35,12 @@ Or review git changes:
 
 ---
 
-## What It Checks
+## Workflow
 
-| Category | Rules |
-|----------|-------|
-| **Naming** | PascalCase (classes/methods), camelCase (private fields) |
-| **SRP** | One responsibility per MonoBehaviour |
-| **DRY** | No duplicate logic |
-| **KISS** | Simple over clever |
-| **Comments** | Explain why, not what |
-| **Unity-specific** | GetComponent caching, Update patterns, ScriptableObject usage, coroutine patterns, lifecycle correctness |
+1. **Input** - Provide a file, git diff, or PR URL
+2. **Parse** - Read the code and identify changes
+3. **Review** - Check against Unity's C# Style Guide (Unity 6 Edition)
+4. **Report** - Output issues organized by severity (Critical, Style, Suggestions)
 
 ---
 
@@ -78,11 +74,6 @@ Or review git changes:
 ### Official Unity Guides
 - [C# Style Guide (Unity 6)](https://unity.com/resources/c-sharp-style-guide-unity-6/) - Official style guide for clean, scalable code
 - [Unity How-To Library](https://unity.com/how-to) - Tutorials on scripting, optimization, and best practices
-
-### Key Topics from Unity How-To
-- **Scripting** - Component patterns, events, ScriptableObjects
-- **Optimization** - Profiling, batching, reducing GC allocation
-- **Best Practices** - Architecture, testing, Unity UI workflows
 
 ---
 
