@@ -16,12 +16,17 @@
 ---
 
 ## Install
-
+Option 1: npx installs for Claude Code
 ```bash
 npx code-review-unity
 ```
+Option 2: Use Skill.sh to install for all your agents
+```bash
+npx skills add https://github.com/jinda-li/code-review-unity --skill code-review-unity
+```
+Option 3: Mannual
 
-Or manually copy `.claude/skills/code-review-unity/` to `~/.claude/skills/`
+Copy `.claude/skills/code-review-unity/` to `~/.claude/skills/`
 
 ---
 
