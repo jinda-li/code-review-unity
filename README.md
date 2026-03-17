@@ -20,7 +20,7 @@
 ```bash
 npx code-review-unity
 ```
-### Option 2: Use [Skill.sh](https://skills.sh/) to manage and install for all your AI Agents
+### Option 2: Use [Skill.sh](https://skills.sh/) to install and manage for all your AI Agents: Claude Code, Cursor, Gemini CLI...
 ```bash
 npx skills add https://github.com/jinda-li/code-review-unity --skill code-review-unity
 ```
