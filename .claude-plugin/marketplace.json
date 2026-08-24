@@ -1,0 +1,14 @@
+{
+  "name": "unity-standards",
+  "description": "Unity C# code review standards shared across projects, referenced rather than vendored into each repo.",
+  "owner": { "name": "Jinda Li", "url": "https://github.com/jinda-li" },
+  "plugins": [
+    {
+      "name": "code-review-unity",
+      "source": "./",
+      "description": "Review Unity C# against the official Unity 6 style guide.",
+      "version": "1.0.5",
+      "skills": "./.claude/skills"
+    }
+  ]
+}
